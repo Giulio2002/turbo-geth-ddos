@@ -1,2 +1,5 @@
 turbo-geth
 data
+node_modules/
+build/
+bin/
