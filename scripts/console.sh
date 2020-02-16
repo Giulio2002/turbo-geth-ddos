@@ -1,0 +1,1 @@
+./turbo-geth/build/bin/geth attach --datadir data

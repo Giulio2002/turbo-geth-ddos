@@ -1,0 +1,3 @@
+[submodule "turbo-geth"]
+	path = turbo-geth
+	url = https://github.com/ledgerwatch/turbo-geth

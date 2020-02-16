@@ -1,0 +1,9 @@
+{
+    "config": {},
+    "difficulty": "0x400",
+    "gasLimit": "0x2100000",
+    "alloc": {
+        "bfb0444E5b0e33c8CA38332533D258A6B2Bb3dE8": 
+         { "balance": "0x1337000000000000000000" }     
+    }
+}

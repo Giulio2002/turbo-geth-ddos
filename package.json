@@ -1,0 +1,22 @@
+{
+  "name": "turbo-geth-ddos",
+  "version": "1.0.0",
+  "description": "Test turbo-geth resistency to different types of DDOS attacks",
+  "scripts": {
+    "suicide-attack": "echo \"Error: no test specified\" && exit 1",
+    "extcodesize-attack": "echo \"Error: no test specified\" && exit 1",
+    "resource-exaustion-attack": "echo \"Error: no test specified\" && exit 1",
+    "testnet": "sh scripts/run-turbo-geth.sh",
+    "debug": "sh scripts/console.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Giulio2002/turbo-geth-ddos.git"
+  },
+  "author": "Giulio Rebuffo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Giulio2002/turbo-geth-ddos/issues"
+  },
+  "homepage": "https://github.com/Giulio2002/turbo-geth-ddos#readme"
+}
