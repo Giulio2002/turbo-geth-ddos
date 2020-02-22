@@ -2,12 +2,8 @@
     "config": {
         "chainId": 454546356
     },
-    "nonce": "0xdeadbeefdeadbeef",
-    "timestamp": "0x00",
-    "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "extraData": "0x686f727365",
     "gasLimit": "99999999999999",
-    "difficulty": "0x0",
+    "difficulty": "0x400",
     "alloc": {
         "bfb0444E5b0e33c8CA38332533D258A6B2Bb3dE8": 
          { "balance": "0x1337000000000000000000" }     

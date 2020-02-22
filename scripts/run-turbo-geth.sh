@@ -1,2 +1,2 @@
-./turbo-geth/build/bin/geth --identity "Turbo-Geth-DDOS" --nodiscover --networkid 454546356 --datadir data  init chainconfig.json 
-./turbo-geth/build/bin/geth --networkid 454546356 --datadir data --rpc --rpcapi miner,eth,web3 --targetgaslimit 999999999 --mine --etherbase="0x0000000000000000000000000000000000000001"
+# ./turbo-geth/build/bin/geth --dev --rpc --rpcapi miner,eth,web3 
+geth --dev --rpc --rpcapi miner,eth,web3 
