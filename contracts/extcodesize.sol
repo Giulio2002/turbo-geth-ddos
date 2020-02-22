@@ -1,12 +1,11 @@
 pragma solidity ^0.5.0;
 
-contract ExtcodesizeAttack {
-    function loop() public view {
+contract Extcodesize {
+    function start() view public returns(uint) {
         uint g = gasleft();
-        while(g > 30000) {
-            assembly {
-                pop(extcodesize(address))
-            }     
-        }
+        assembly {
+            pop(extcodesize(address))
+        }     
+        return g - gasleft(); 
     }
 }
