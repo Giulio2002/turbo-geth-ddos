@@ -52,7 +52,7 @@ func main() {
 	transactOpts.GasPrice = big.NewInt(1)
 	transactOpts.GasLimit = 790000 // 7.9 Million of gas
 
-	blocks, _ := core.GenerateChain(context.Background(), gspec.Config, genesis, engine, genesisDb, 2, func(i int, block *core.BlockGen) {
+	blocks, _ := core.GenerateChain(context.Background(), gspec.Config, genesis, engine, genesisDb, 4, func(i int, block *core.BlockGen) {
 		var (
 			tx  *types.Transaction
 			txs []*types.Transaction
@@ -63,6 +63,10 @@ func main() {
 			_, tx, suicide, _ = contracts.DeploySuicide(transactOpts, contractBackend)
 		case 1:
 			_, tx, extcode, _ = contracts.DeployExtcodesize(transactOpts, contractBackend)
+		case 2:
+			tx, _ = suicide.Start(transactOpts)
+		case 3:
+			tx, _ = extcode.Start(transactOpts)
 		}
 		if txs == nil && tx != nil {
 			txs = append(txs, tx)
@@ -74,11 +78,15 @@ func main() {
 	})
 	fmt.Println("Gas for Selfdestruct")
 	blockchain.InsertChain(context.Background(), types.Blocks{blocks[0]})
+	blockchain.InsertChain(context.Background(), types.Blocks{blocks[1]})
+	blockchain.InsertChain(context.Background(), types.Blocks{blocks[2]})
 	_, _ = suicide.Start(transactOpts)
-	receipts := blockchain.GetReceiptsByHash(blockchain.GetBlockByNumber(1).Hash())
-	fmt.Println(receipts[0].GasUsed - 21000)
+	receipts := blockchain.GetReceiptsByHash(blockchain.CurrentBlock().Hash())
+	fmt.Println(receipts[0].GasUsed)
+	blockchain.InsertChain(context.Background(), types.Blocks{blocks[3]})
 	fmt.Println("Gas for Extcodesize")
 	blockchain.InsertChain(context.Background(), types.Blocks{blocks[1]})
-	gas, _ := extcode.Start(&bind.CallOpts{})
-	fmt.Println(gas.Uint64())
+	_, _ = extcode.Start(transactOpts)
+	receipts = blockchain.GetReceiptsByHash(blockchain.CurrentBlock().Hash())
+	fmt.Println(receipts[0].GasUsed)
 }

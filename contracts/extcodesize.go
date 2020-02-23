@@ -28,7 +28,7 @@ var (
 )
 
 // ExtcodesizeABI is the input ABI used to generate the binding from.
-const ExtcodesizeABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"start\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]"
+const ExtcodesizeABI = "[{\"constant\":false,\"inputs\":[],\"name\":\"start\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // ExtcodesizeFuncSigs maps the 4-byte function signature to its string representation.
 var ExtcodesizeFuncSigs = map[string]string{
@@ -36,7 +36,7 @@ var ExtcodesizeFuncSigs = map[string]string{
 }
 
 // ExtcodesizeBin is the compiled bytecode used for deploying new contracts.
-var ExtcodesizeBin = "0x6080604052348015600f57600080fd5b5060888061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063be9a655514602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000805a90505a900390509056fea265627a7a72315820ae8725035a6487afe0bf1ab9e651d8cf659793779d7407c4ebe2db5de915db3364736f6c63430005100032"
+var ExtcodesizeBin = "0x6080604052348015600f57600080fd5b5060888061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063be9a655514602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000805a90505a900390509056fea265627a7a7231582040ef0068afc54c54bda1e87362f23e706b65f0d81981a0aef9de49c75d300f4a64736f6c63430005100032"
 
 // DeployExtcodesize deploys a new Ethereum contract, binding an instance of Extcodesize to it.
 func DeployExtcodesize(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Extcodesize, error) {
@@ -194,28 +194,211 @@ func (_Extcodesize *ExtcodesizeTransactorRaw) Transact(opts *bind.TransactOpts, 
 	return _Extcodesize.Contract.contract.Transact(opts, method, params...)
 }
 
-// Start is a free data retrieval call binding the contract method 0xbe9a6555.
+// Start is a paid mutator transaction binding the contract method 0xbe9a6555.
 //
-// Solidity: function start() constant returns(uint256)
-func (_Extcodesize *ExtcodesizeCaller) Start(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _Extcodesize.contract.Call(opts, out, "start")
-	return *ret0, err
+// Solidity: function start() returns(uint256)
+func (_Extcodesize *ExtcodesizeTransactor) Start(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Extcodesize.contract.Transact(opts, "start")
 }
 
-// Start is a free data retrieval call binding the contract method 0xbe9a6555.
+// Start is a paid mutator transaction binding the contract method 0xbe9a6555.
 //
-// Solidity: function start() constant returns(uint256)
-func (_Extcodesize *ExtcodesizeSession) Start() (*big.Int, error) {
-	return _Extcodesize.Contract.Start(&_Extcodesize.CallOpts)
+// Solidity: function start() returns(uint256)
+func (_Extcodesize *ExtcodesizeSession) Start() (*types.Transaction, error) {
+	return _Extcodesize.Contract.Start(&_Extcodesize.TransactOpts)
 }
 
-// Start is a free data retrieval call binding the contract method 0xbe9a6555.
+// Start is a paid mutator transaction binding the contract method 0xbe9a6555.
 //
-// Solidity: function start() constant returns(uint256)
-func (_Extcodesize *ExtcodesizeCallerSession) Start() (*big.Int, error) {
-	return _Extcodesize.Contract.Start(&_Extcodesize.CallOpts)
+// Solidity: function start() returns(uint256)
+func (_Extcodesize *ExtcodesizeTransactorSession) Start() (*types.Transaction, error) {
+	return _Extcodesize.Contract.Start(&_Extcodesize.TransactOpts)
+}
+
+// ExtcodesizeAttackABI is the input ABI used to generate the binding from.
+const ExtcodesizeAttackABI = "[{\"constant\":false,\"inputs\":[],\"name\":\"loop\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+
+// ExtcodesizeAttackFuncSigs maps the 4-byte function signature to its string representation.
+var ExtcodesizeAttackFuncSigs = map[string]string{
+	"a92100cb": "loop()",
+}
+
+// ExtcodesizeAttackBin is the compiled bytecode used for deploying new contracts.
+var ExtcodesizeAttackBin = "0x6080604052348015600f57600080fd5b5060988061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063a92100cb14602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000805a90505b61c350811115605c575a9050604c565b5a9150509056fea265627a7a723158208790ef4022e6381ebb8ed6db3bb324ead5dcd68801a77232a6dfc2a8e414a9d264736f6c63430005100032"
+
+// DeployExtcodesizeAttack deploys a new Ethereum contract, binding an instance of ExtcodesizeAttack to it.
+func DeployExtcodesizeAttack(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *ExtcodesizeAttack, error) {
+	parsed, err := abi.JSON(strings.NewReader(ExtcodesizeAttackABI))
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+
+	address, tx, contract, err := bind.DeployContract(auth, parsed, common.FromHex(ExtcodesizeAttackBin), backend)
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	return address, tx, &ExtcodesizeAttack{ExtcodesizeAttackCaller: ExtcodesizeAttackCaller{contract: contract}, ExtcodesizeAttackTransactor: ExtcodesizeAttackTransactor{contract: contract}, ExtcodesizeAttackFilterer: ExtcodesizeAttackFilterer{contract: contract}}, nil
+}
+
+// ExtcodesizeAttack is an auto generated Go binding around an Ethereum contract.
+type ExtcodesizeAttack struct {
+	ExtcodesizeAttackCaller     // Read-only binding to the contract
+	ExtcodesizeAttackTransactor // Write-only binding to the contract
+	ExtcodesizeAttackFilterer   // Log filterer for contract events
+}
+
+// ExtcodesizeAttackCaller is an auto generated read-only Go binding around an Ethereum contract.
+type ExtcodesizeAttackCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// ExtcodesizeAttackTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type ExtcodesizeAttackTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// ExtcodesizeAttackFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type ExtcodesizeAttackFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// ExtcodesizeAttackSession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type ExtcodesizeAttackSession struct {
+	Contract     *ExtcodesizeAttack // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts      // Call options to use throughout this session
+	TransactOpts bind.TransactOpts  // Transaction auth options to use throughout this session
+}
+
+// ExtcodesizeAttackCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type ExtcodesizeAttackCallerSession struct {
+	Contract *ExtcodesizeAttackCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts            // Call options to use throughout this session
+}
+
+// ExtcodesizeAttackTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type ExtcodesizeAttackTransactorSession struct {
+	Contract     *ExtcodesizeAttackTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts            // Transaction auth options to use throughout this session
+}
+
+// ExtcodesizeAttackRaw is an auto generated low-level Go binding around an Ethereum contract.
+type ExtcodesizeAttackRaw struct {
+	Contract *ExtcodesizeAttack // Generic contract binding to access the raw methods on
+}
+
+// ExtcodesizeAttackCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type ExtcodesizeAttackCallerRaw struct {
+	Contract *ExtcodesizeAttackCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// ExtcodesizeAttackTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type ExtcodesizeAttackTransactorRaw struct {
+	Contract *ExtcodesizeAttackTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewExtcodesizeAttack creates a new instance of ExtcodesizeAttack, bound to a specific deployed contract.
+func NewExtcodesizeAttack(address common.Address, backend bind.ContractBackend) (*ExtcodesizeAttack, error) {
+	contract, err := bindExtcodesizeAttack(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &ExtcodesizeAttack{ExtcodesizeAttackCaller: ExtcodesizeAttackCaller{contract: contract}, ExtcodesizeAttackTransactor: ExtcodesizeAttackTransactor{contract: contract}, ExtcodesizeAttackFilterer: ExtcodesizeAttackFilterer{contract: contract}}, nil
+}
+
+// NewExtcodesizeAttackCaller creates a new read-only instance of ExtcodesizeAttack, bound to a specific deployed contract.
+func NewExtcodesizeAttackCaller(address common.Address, caller bind.ContractCaller) (*ExtcodesizeAttackCaller, error) {
+	contract, err := bindExtcodesizeAttack(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &ExtcodesizeAttackCaller{contract: contract}, nil
+}
+
+// NewExtcodesizeAttackTransactor creates a new write-only instance of ExtcodesizeAttack, bound to a specific deployed contract.
+func NewExtcodesizeAttackTransactor(address common.Address, transactor bind.ContractTransactor) (*ExtcodesizeAttackTransactor, error) {
+	contract, err := bindExtcodesizeAttack(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &ExtcodesizeAttackTransactor{contract: contract}, nil
+}
+
+// NewExtcodesizeAttackFilterer creates a new log filterer instance of ExtcodesizeAttack, bound to a specific deployed contract.
+func NewExtcodesizeAttackFilterer(address common.Address, filterer bind.ContractFilterer) (*ExtcodesizeAttackFilterer, error) {
+	contract, err := bindExtcodesizeAttack(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &ExtcodesizeAttackFilterer{contract: contract}, nil
+}
+
+// bindExtcodesizeAttack binds a generic wrapper to an already deployed contract.
+func bindExtcodesizeAttack(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(ExtcodesizeAttackABI))
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_ExtcodesizeAttack *ExtcodesizeAttackRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ExtcodesizeAttack.Contract.ExtcodesizeAttackCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_ExtcodesizeAttack *ExtcodesizeAttackRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ExtcodesizeAttack.Contract.ExtcodesizeAttackTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_ExtcodesizeAttack *ExtcodesizeAttackRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ExtcodesizeAttack.Contract.ExtcodesizeAttackTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_ExtcodesizeAttack *ExtcodesizeAttackCallerRaw) Call(opts *bind.CallOpts, result interface{}, method string, params ...interface{}) error {
+	return _ExtcodesizeAttack.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_ExtcodesizeAttack *ExtcodesizeAttackTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ExtcodesizeAttack.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_ExtcodesizeAttack *ExtcodesizeAttackTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _ExtcodesizeAttack.Contract.contract.Transact(opts, method, params...)
+}
+
+// Loop is a paid mutator transaction binding the contract method 0xa92100cb.
+//
+// Solidity: function loop() returns(uint256)
+func (_ExtcodesizeAttack *ExtcodesizeAttackTransactor) Loop(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ExtcodesizeAttack.contract.Transact(opts, "loop")
+}
+
+// Loop is a paid mutator transaction binding the contract method 0xa92100cb.
+//
+// Solidity: function loop() returns(uint256)
+func (_ExtcodesizeAttack *ExtcodesizeAttackSession) Loop() (*types.Transaction, error) {
+	return _ExtcodesizeAttack.Contract.Loop(&_ExtcodesizeAttack.TransactOpts)
+}
+
+// Loop is a paid mutator transaction binding the contract method 0xa92100cb.
+//
+// Solidity: function loop() returns(uint256)
+func (_ExtcodesizeAttack *ExtcodesizeAttackTransactorSession) Loop() (*types.Transaction, error) {
+	return _ExtcodesizeAttack.Contract.Loop(&_ExtcodesizeAttack.TransactOpts)
 }

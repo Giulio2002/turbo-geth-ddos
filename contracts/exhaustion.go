@@ -28,7 +28,7 @@ var (
 )
 
 // ExhaustionAttackABI is the input ABI used to generate the binding from.
-const ExhaustionAttackABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"loop\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}]"
+const ExhaustionAttackABI = "[{\"constant\":false,\"inputs\":[],\"name\":\"loop\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // ExhaustionAttackFuncSigs maps the 4-byte function signature to its string representation.
 var ExhaustionAttackFuncSigs = map[string]string{
@@ -36,7 +36,7 @@ var ExhaustionAttackFuncSigs = map[string]string{
 }
 
 // ExhaustionAttackBin is the compiled bytecode used for deploying new contracts.
-var ExhaustionAttackBin = "0x608060405234801561001057600080fd5b5060b58061001f6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063a92100cb14602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000805a90505b61c3508111156079576857c2b11309b96b4c594054356625dfb360fa775a3152601f80601f375a9050604c565b5a9150509056fea265627a7a72315820967d327b60ec456273b5dfb0f9b81bc0c8926fd370f6d911af4d203dbf8a678964736f6c63430005100032"
+var ExhaustionAttackBin = "0x6080604052348015600f57600080fd5b5060898061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063a92100cb14602d575b600080fd5b60336035565b005b60005a90505b61c350811115605157601f80601f375a9050603b565b5056fea265627a7a7231582061d3abd1882697c26052a3e863ca13fc7b9ddadab3e01c61856c8027cf8edddf64736f6c63430005100032"
 
 // DeployExhaustionAttack deploys a new Ethereum contract, binding an instance of ExhaustionAttack to it.
 func DeployExhaustionAttack(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *ExhaustionAttack, error) {
@@ -194,28 +194,23 @@ func (_ExhaustionAttack *ExhaustionAttackTransactorRaw) Transact(opts *bind.Tran
 	return _ExhaustionAttack.Contract.contract.Transact(opts, method, params...)
 }
 
-// Loop is a free data retrieval call binding the contract method 0xa92100cb.
+// Loop is a paid mutator transaction binding the contract method 0xa92100cb.
 //
-// Solidity: function loop() constant returns(uint256)
-func (_ExhaustionAttack *ExhaustionAttackCaller) Loop(opts *bind.CallOpts) (*big.Int, error) {
-	var (
-		ret0 = new(*big.Int)
-	)
-	out := ret0
-	err := _ExhaustionAttack.contract.Call(opts, out, "loop")
-	return *ret0, err
+// Solidity: function loop() returns()
+func (_ExhaustionAttack *ExhaustionAttackTransactor) Loop(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _ExhaustionAttack.contract.Transact(opts, "loop")
 }
 
-// Loop is a free data retrieval call binding the contract method 0xa92100cb.
+// Loop is a paid mutator transaction binding the contract method 0xa92100cb.
 //
-// Solidity: function loop() constant returns(uint256)
-func (_ExhaustionAttack *ExhaustionAttackSession) Loop() (*big.Int, error) {
-	return _ExhaustionAttack.Contract.Loop(&_ExhaustionAttack.CallOpts)
+// Solidity: function loop() returns()
+func (_ExhaustionAttack *ExhaustionAttackSession) Loop() (*types.Transaction, error) {
+	return _ExhaustionAttack.Contract.Loop(&_ExhaustionAttack.TransactOpts)
 }
 
-// Loop is a free data retrieval call binding the contract method 0xa92100cb.
+// Loop is a paid mutator transaction binding the contract method 0xa92100cb.
 //
-// Solidity: function loop() constant returns(uint256)
-func (_ExhaustionAttack *ExhaustionAttackCallerSession) Loop() (*big.Int, error) {
-	return _ExhaustionAttack.Contract.Loop(&_ExhaustionAttack.CallOpts)
+// Solidity: function loop() returns()
+func (_ExhaustionAttack *ExhaustionAttackTransactorSession) Loop() (*types.Transaction, error) {
+	return _ExhaustionAttack.Contract.Loop(&_ExhaustionAttack.TransactOpts)
 }
