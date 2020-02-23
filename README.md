@@ -4,7 +4,7 @@ Gas 471 per extcodesize
 go run one.go // for checking
 ```
 
-## Extcodesize Attack
+## Suicide Attack
 ```
 Gas = Cost of smart contract creation per suicide (13K gas in this case)
 go run one.go // for checking
