@@ -18,3 +18,37 @@ contract ExhaustionAttack {
         }
     }
 }
+
+contract Sload {
+    uint sload;
+    function start() public {
+        assembly {
+            pop(sload(0))
+        }
+    }
+}
+
+contract Balance {
+    function start() public {
+        assembly {
+            pop(balance(address))
+        }
+    }
+}
+
+contract SloadCall {
+    uint sload;
+    function start() public view {
+        assembly {
+            pop(sload(0))
+        }
+    }
+}
+
+contract BalanceCall {
+    function start() public view {
+        assembly {
+            pop(balance(address))
+        }
+    }
+}

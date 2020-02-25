@@ -1,12 +1,10 @@
 pragma solidity ^0.5.0;
 
 contract Extcodesize {
-    function start() public returns(uint) {
-        uint g = gasleft();
+    function start() public {
         assembly {
             pop(extcodesize(address))
         }     
-        return g - gasleft(); 
     }
 }
 

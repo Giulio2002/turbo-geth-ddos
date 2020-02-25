@@ -28,7 +28,7 @@ var (
 )
 
 // ExtcodesizeABI is the input ABI used to generate the binding from.
-const ExtcodesizeABI = "[{\"constant\":false,\"inputs\":[],\"name\":\"start\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const ExtcodesizeABI = "[{\"constant\":false,\"inputs\":[],\"name\":\"start\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // ExtcodesizeFuncSigs maps the 4-byte function signature to its string representation.
 var ExtcodesizeFuncSigs = map[string]string{
@@ -36,7 +36,7 @@ var ExtcodesizeFuncSigs = map[string]string{
 }
 
 // ExtcodesizeBin is the compiled bytecode used for deploying new contracts.
-var ExtcodesizeBin = "0x6080604052348015600f57600080fd5b5060888061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063be9a655514602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000805a90505a900390509056fea265627a7a7231582040ef0068afc54c54bda1e87362f23e706b65f0d81981a0aef9de49c75d300f4a64736f6c63430005100032"
+var ExtcodesizeBin = "0x6080604052348015600f57600080fd5b50606c80601d6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063be9a655514602d575b600080fd5b60336035565b005b56fea265627a7a72315820bc24bc30ad89ec83eb2f3b12d45328b3d4fbfcdac082f7a5a4d9950aff908cf364736f6c63430005100032"
 
 // DeployExtcodesize deploys a new Ethereum contract, binding an instance of Extcodesize to it.
 func DeployExtcodesize(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Extcodesize, error) {
@@ -196,21 +196,21 @@ func (_Extcodesize *ExtcodesizeTransactorRaw) Transact(opts *bind.TransactOpts, 
 
 // Start is a paid mutator transaction binding the contract method 0xbe9a6555.
 //
-// Solidity: function start() returns(uint256)
+// Solidity: function start() returns()
 func (_Extcodesize *ExtcodesizeTransactor) Start(opts *bind.TransactOpts) (*types.Transaction, error) {
 	return _Extcodesize.contract.Transact(opts, "start")
 }
 
 // Start is a paid mutator transaction binding the contract method 0xbe9a6555.
 //
-// Solidity: function start() returns(uint256)
+// Solidity: function start() returns()
 func (_Extcodesize *ExtcodesizeSession) Start() (*types.Transaction, error) {
 	return _Extcodesize.Contract.Start(&_Extcodesize.TransactOpts)
 }
 
 // Start is a paid mutator transaction binding the contract method 0xbe9a6555.
 //
-// Solidity: function start() returns(uint256)
+// Solidity: function start() returns()
 func (_Extcodesize *ExtcodesizeTransactorSession) Start() (*types.Transaction, error) {
 	return _Extcodesize.Contract.Start(&_Extcodesize.TransactOpts)
 }
@@ -224,7 +224,7 @@ var ExtcodesizeAttackFuncSigs = map[string]string{
 }
 
 // ExtcodesizeAttackBin is the compiled bytecode used for deploying new contracts.
-var ExtcodesizeAttackBin = "0x6080604052348015600f57600080fd5b5060988061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063a92100cb14602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000805a90505b61c350811115605c575a9050604c565b5a9150509056fea265627a7a723158208790ef4022e6381ebb8ed6db3bb324ead5dcd68801a77232a6dfc2a8e414a9d264736f6c63430005100032"
+var ExtcodesizeAttackBin = "0x6080604052348015600f57600080fd5b5060988061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063a92100cb14602d575b600080fd5b60336045565b60408051918252519081900360200190f35b6000805a90505b61c350811115605c575a9050604c565b5a9150509056fea265627a7a72315820b240a40b2ac10ea29bfe4861984da7b0735faa722dcf04c2e1819c0d604f008464736f6c63430005100032"
 
 // DeployExtcodesizeAttack deploys a new Ethereum contract, binding an instance of ExtcodesizeAttack to it.
 func DeployExtcodesizeAttack(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *ExtcodesizeAttack, error) {
