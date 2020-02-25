@@ -4,6 +4,8 @@ import (
 	"context"
 	"fmt"
 	"math/big"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/Giulio2002/turbo-geth-ddos/contracts"
@@ -18,6 +20,18 @@ import (
 	"github.com/ledgerwatch/turbo-geth/params"
 )
 
+func convertElapsedToNano(elapsed string) float64 {
+	if strings.Contains(elapsed, "µs") {
+		elapsed = strings.Replace(elapsed, "µs", "", 1)
+		result, _ := strconv.ParseFloat(elapsed, 64)
+		return result
+	} else {
+		elapsed = strings.Replace(elapsed, "ms", "", 1)
+		result, _ := strconv.ParseFloat(elapsed, 64)
+		return result * 1000
+	}
+
+}
 func main() {
 	// Configure and generate a sample block chain
 	var (
@@ -92,12 +106,19 @@ func main() {
 	fmt.Println(receipts[0].GasUsed)
 	_, _, sloadcall, _ := contracts.DeploySloadCall(transactOpts, contractBackend)
 	_, _, balancecall, _ := contracts.DeployBalanceCall(transactOpts, contractBackend)
-	start := time.Now()
-	sloadcall.Start(nil)
-	elapsed := time.Since(start)
-	fmt.Printf("sload took %s\n", elapsed)
-	start = time.Now()
-	balancecall.Start(nil)
-	elapsed = time.Since(start)
-	fmt.Printf("balance took %s\n", elapsed)
+	var collected float64
+	for i := 0; i < 1000; i++ {
+		start := time.Now()
+		sloadcall.Start(nil)
+		collected += convertElapsedToNano(time.Since(start).String())
+	}
+
+	fmt.Printf("sload took %fµs\n", collected/1000)
+	collected = 0
+	for i := 0; i < 1000; i++ {
+		start := time.Now()
+		balancecall.Start(nil)
+		collected += convertElapsedToNano(time.Since(start).String())
+	}
+	fmt.Printf("balance took %fµs\n", collected/1000)
 }
